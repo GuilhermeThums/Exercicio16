@@ -6,27 +6,48 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Toast;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
+    private Button button;
+    private RadioGroup radioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        radioGroup = (RadioGroup) findViewById(R.id.sexoRadioButton);
+
+        radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // find which radio button is selected
+                if (checkedId == R.id.masculino) {
+                    Toast.makeText(getApplicationContext(), "Escolhido: Masculino",
+                            Toast.LENGTH_SHORT).show();
+                } else if (checkedId == R.id.feminino) {
+                    Toast.makeText(getApplicationContext(), "Escolhido: Feminino",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        });
     }
 
-    /**
-     * Called when the user taps the Send button
-     */
     public void sendMessage(View view) {
-        Context contexto = getApplicationContext();
+        final Context contexto = getApplicationContext();
         String texto;
-        int duracao = Toast.LENGTH_LONG;
+        final int duracao = Toast.LENGTH_LONG;
 
         EditText matricula = findViewById(R.id.Matricula);
         String matriculaText = matricula.getText().toString();
@@ -41,46 +62,49 @@ public class MainActivity extends AppCompatActivity {
         String senhaText = senha.getText().toString();
 
         EditText confSenha = findViewById(R.id.confSenha);
-        String confSenhaText = senha.getText().toString();
+        String confSenhaText = confSenha.getText().toString();
 
-        boolean b = Pattern.matches("/d", nomeText);
+        boolean letrasRegex = Pattern.matches("\\d", nomeText);
+        boolean numerosRegex = Pattern.matches("\\w", matriculaText);
+        boolean senhaRegex = Pattern.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{6,8}$", senhaText);
+        boolean confSenhaRegex = Pattern.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{6,8}$", confSenhaText);
+        boolean emailRegex = Pattern.matches("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", emailText);
 
         if (TextUtils.isEmpty(matriculaText)) {
             Toast toast = Toast.makeText(contexto, "A matricula nao pode ser vazio", duracao);
             toast.show();
-        }
-        else if (TextUtils.isEmpty(nomeText)) {
+        } else if (TextUtils.isEmpty(nomeText)) {
             Toast toast = Toast.makeText(contexto, "O nome nao pode ser vazio", duracao);
             toast.show();
-        }
-        else  if (TextUtils.isEmpty(emailText)) {
+        } else if (TextUtils.isEmpty(emailText)) {
             Toast toast = Toast.makeText(contexto, "O Email nao pode ser vazio", duracao);
             toast.show();
-        }
-        else if (TextUtils.isEmpty(senhaText)) {
+        } else if (TextUtils.isEmpty(senhaText)) {
             Toast toast = Toast.makeText(contexto, "A Senha nao pode ser vazio", duracao);
             toast.show();
-        }
-        else if (TextUtils.isEmpty(confSenhaText)) {
+        } else if (TextUtils.isEmpty(confSenhaText)) {
             Toast toast = Toast.makeText(contexto, "A Confirmação de senha nao pode ser vazio", duracao);
             toast.show();
-        }
-        else if (b) {
-            Toast toast = Toast.makeText(contexto, "Entre somente letras", duracao);
+        } else if (letrasRegex) {
+            Toast toast = Toast.makeText(contexto, "Entre somente letras no nome", duracao);
             toast.show();
-        }
-        else if (Pattern.matches("/^[A-Za-z]+$/",matriculaText)) {
-            Toast toast = Toast.makeText(contexto, "Entre somente numeros", duracao);
+        } else if (!emailRegex) {
+            Toast toast = Toast.makeText(contexto, "Entre um email valido", duracao);
             toast.show();
-        }
-        else if (senhaText.matches("/^(?=.*[\\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\\w!@#$%^&*]{6,8}$/")) {
+        } else if (numerosRegex) {
+            Toast toast = Toast.makeText(contexto, "Entre somente numeros na matricula", duracao);
+            toast.show();
+        } else if (!senhaRegex) {
             Toast toast = Toast.makeText(contexto, "Senha invalida", duracao);
-            toast.show();        }
-        else if (confSenhaText.matches("/^(?=.*[\\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\\w!@#$%^&*]{6,8}$/")) {
-            Toast toast = Toast.makeText(contexto, "Entre somente numeros\"", duracao);
             toast.show();
-        }  else {
-            texto = "Tudo oK";
+        } else if (!confSenhaRegex) {
+            Toast toast = Toast.makeText(contexto, "Confirmação de senha invalida", duracao);
+            toast.show();
+        } else if (!senhaText.equals(confSenhaText)) {
+            Toast toast = Toast.makeText(contexto, "A senha e a confirmação devem ser iguais", duracao);
+            toast.show();
+        } else {
+            texto = "Tudo OK";
             Toast toast = Toast.makeText(contexto, texto, duracao);
             toast.show();
         }

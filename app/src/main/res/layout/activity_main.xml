@@ -72,19 +72,6 @@
         app:layout_constraintStart_toEndOf="@+id/NOmeLabel"
         app:layout_constraintTop_toBottomOf="@+id/Matricula" />
 
-    <EditText
-        android:id="@+id/Email"
-        android:layout_width="116dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/Nome" />
-
     <TextView
         android:id="@+id/textView4"
         android:layout_width="106dp"
@@ -116,6 +103,26 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
+        android:id="@+id/textView3"
+        android:layout_width="134dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="112dp"
+        android:text="Data de Nascimento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="134dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
+        android:text="Sexo:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
         android:id="@+id/NOmeLabel"
         android:layout_width="101dp"
         android:layout_height="38dp"
@@ -141,5 +148,65 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp" />
+
+    <RadioGroup
+        android:id="@+id/sexoRadioButton"
+        android:layout_width="137dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confSenha" >
+
+    <RadioButton
+        android:id="@+id/masculino"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
+        android:text="Masculino"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/confSenha" />
+
+    <RadioButton
+        android:id="@+id/feminino"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:text="Feminino"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.827"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/masculino" />
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/Email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.761"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/Nome" />
+
+    <EditText
+        android:id="@+id/Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/sexoRadioButton" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
