@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity {
     private Button button;
     private RadioGroup radioGroup;
+    private RadioGroup radioGroup1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,28 @@ public class MainActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 } else if (checkedId == R.id.feminino) {
                     Toast.makeText(getApplicationContext(), "Escolhido: Feminino",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        });
+
+        radioGroup1 = (RadioGroup) findViewById(R.id.cursoGroup);
+
+        radioGroup1.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // find which radio button is selected
+                if (checkedId == R.id.ads) {
+                    Toast.makeText(getApplicationContext(), "Escolhido: Ads",
+                            Toast.LENGTH_SHORT).show();
+                } else if (checkedId == R.id.eng) {
+                    Toast.makeText(getApplicationContext(), "Escolhido: Eng",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else if (checkedId == R.id.cie) {
+                    Toast.makeText(getApplicationContext(), "Escolhido: Ciências",
                             Toast.LENGTH_SHORT).show();
                 }
             }
