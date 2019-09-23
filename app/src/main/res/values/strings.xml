@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">exe16</string>
+    <string name="matricula">Matricula</string>
+    <string name="nome">Nome</string>
+    <string name="senha">Senha</string>
+    <string name="e_mail">E-mail</string>
+    <string name="confirmar_senha">Confirmar senha</string>
+    <string name="data_de_nascimento">Data de Nascimento</string>
+    <string name="curso">Curso</string>
+    <string name="cienciaDaComp">Ciên. Comp.</string>
+    <string name="engComp">Eng. Comp.</string>
+    <string name="enviar">Enviar</string>
+    <string name="motiva_o_do_curso">Motivação do Curso</string>
+    <string name="n_o_cursaria">Não Cursaria: </string>
+    <string name="n_o">Não</string>
+    <string name="notifica_es">Receber notificações?</string>
+    <string name="sim">Sim</string>
+    <string name="ads">ADS</string>
+    <string name="eng_computa_o">Eng. Computação</string>
+    <string name="masculino">Masculino</string>
+    <string name="ci_ncias_comp">Ciências Comp.</string>
+    <string name="feminino">Feminino</string>
+    <string name="sexo">Sexo</string>
+    <string name="f_sica">Física</string>
+    <string name="letras">Letras</string>
+    <string name="hist_ria">História</string>
 </resources>
